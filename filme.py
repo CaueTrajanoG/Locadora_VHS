@@ -1,29 +1,17 @@
-class filme:
+class Filme:
     def __init__(self, title, price):
         self.titulo = title
         self.preco = price
-        self.estado = True
+        self.estado = "disponivel"
 
-    # @property
-    # def titulo(self):
-    #     return self.__titulo
+    def __str__(self):
+        return f'{self.titulo} | {self.preco} | {self.estado}'
 
-    # @property
-    # def preco(self):
-    #     return self.__preco
-    
-    # @preco.setter
-    # def preco(self, valor):
-    #     self.__preco = valor
-    
-    # @titulo.setter
-    # def titulo(self, newTitle):
-    #     self.__titulo = newTitle
+    def __eq__(self, outro):
+        return self.titulo == outro.titulo
 
-    # @property
-    # def estado(self):
-    #     return self.__estado
-    
-    # @estado.setter
-    # def estado(self, estado):
-    #     self.__estado = estado
+    def __lt__(self, outro):
+        return self.titulo < outro.titulo
+
+    def __gt__(self, outro):
+        return self.titulo >= outro.titulo

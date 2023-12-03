@@ -131,24 +131,11 @@ class BinarySearchTree:
             self.__preorder(node.leftChild)
             self.__preorder(node.rightChild)
 
-    def returnAll(self):
-        return self.__returnAll(self.__root)
-    
     def __inorder(self, node):
         if( node != None):
             self.__inorder(node.leftChild)
             print(f'{node.data} ',end='')
             self.__inorder(node.rightChild)
-
-    def __returnAll(self, node):
-        if node is None:
-            return []
-    
-        arr = []
-        arr.extend(self.__returnAll(node.leftChild))
-        arr.append(node)
-        arr.extend(self.__returnAll(node.rightChild))
-        return arr
 
     def __postorder(self, node):
         if( node != None):
@@ -237,3 +224,44 @@ class BinarySearchTree:
   
         return current
 
+if __name__ == '__main__':
+    bst = BinarySearchTree()
+
+    print('Adicionando os nós 50, 17, 76, 9, 14, 12, 54, 72 e 67 à arvore...')
+
+    bst.add(17)
+    bst.add(76)
+    bst.add(9)
+    bst.add(14)
+    bst.add(12)
+    bst.add(54)
+    bst.add(72)
+    bst.add(67)
+
+    print('Consultando o nó raiz:')
+    print('Root:',bst.getRoot())
+
+    print('Travessia em preordem:')
+    bst.preorder()
+    print('Travessia em inordem:')
+    bst.inorder()
+    print('Travessia em posordem:')
+    bst.postorder()
+
+
+    chave = 72
+    print('Pesquisando a chave',chave,' na árvore:')
+    if( bst.search( chave )):
+        print('\nChave',chave,'está na árvore')
+    else:
+        print('\nChave',chave,'NÃO está na árvore')
+        
+    print('\nTentando apagar o nó de chave',chave)
+    print('No removido:',bst.deleteNode(chave))
+
+
+    print('Contagem de nós: ', bst.count())
+            
+    bst.preorder()
+    bst.inorder()
+    bst.postorder()
