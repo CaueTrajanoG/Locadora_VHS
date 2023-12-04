@@ -1,5 +1,5 @@
 from BinarySearchTree import BinarySearchTree, Node
-from Filme import Filme
+from filme import Filme
 
 arv = BinarySearchTree()
 arv.add(Filme("Carros", 10))
@@ -18,4 +18,4 @@ def showCat():
     #return arr
 showCat()
 
-arv.search('Carros', 1)
+print(arv.search(Filme("Carros", 10)))
