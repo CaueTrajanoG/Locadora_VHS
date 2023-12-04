@@ -1,7 +1,7 @@
 import pickle
 import socket
 import threading
-from catalogo import showCat
+from data.catalogo import showCat
 
 HOST = '0.0.0.0'  # Endereco IP do Servidor
 PORT = 5000  # Porta que o Servidor está

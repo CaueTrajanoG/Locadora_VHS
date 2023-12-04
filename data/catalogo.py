@@ -1,5 +1,5 @@
-from BinarySearchTree import BinarySearchTree, Node
-from filme import Filme
+from structures.BinarySearchTree import BinarySearchTree, Node
+from data.filme import Filme
 
 arv = BinarySearchTree()
 arv.add(Filme("Carros", 10))

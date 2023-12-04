@@ -1,4 +1,4 @@
-from BinarySearchTree import BinarySearchTree
+from structures.BinarySearchTree import BinarySearchTree
 
 print("Arvore")
 ab = BinarySearchTree()
