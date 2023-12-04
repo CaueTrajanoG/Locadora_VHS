@@ -169,8 +169,7 @@ class BinarySearchTree:
             return node.data
         else:
             return None
-        
-    
+       
     # Dado um nó de uma BST e uma chave busca, este método
     # deleta o nó que contém a chave e devolve o novo nó raiz
     def __deleteNode(self,root:'Node', key:any):

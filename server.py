@@ -23,15 +23,19 @@ def conecta_cliente(conect, cliente):
 
 def comunicacao(mensagem, conexao, cliente):
 	msg = mensagem.decode()
-	print('Cliente: ', cliente, ' diz: ', mensagem)
 	try:
-		if msg == "1":
+		if msg == "catalogo":
 			print('Mostrar catalogo')
 			showCat()
 			arr = showCat()
-			# conexao.send(arr)
 			data_serialized = pickle.dumps(arr)
 			conexao.send(data_serialized)			
+		if msg == "alugar":
+			msg = conexao.recv(1024)
+			msg = msg.decode()
+			print(f'Fita alugada: {msg.decode()}')
+			confirm = "Aluguel efetuado!"
+			conexao.send(confirm.encode())
 
 	except Exception as e:
 		print('Erro:', e)
@@ -42,10 +46,6 @@ def comunicacao(mensagem, conexao, cliente):
 while True:    
 	# Aguarda por uma conexão
     conexao, cliente = tcp.accept()
-    
-	# quantidade de bytes que espera receber
-    # msg = conexao.recv(1024)
-	
 	#Recebe a conexão e inicia uma nova thread para o cliente
     threading.Thread(target=conecta_cliente, args=(conexao, cliente)).start()
 conexao.close()

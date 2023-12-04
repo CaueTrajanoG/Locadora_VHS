@@ -18,7 +18,7 @@ def showMenu():
 Opções:
           +___________________+
           ||                 ||
-    ► 1 - || Exibir catálogo ||
+    ► 1 - || Catálogo        ||
     ► 2 - || Alugar fita     ||
     ► 3 - || Devolver fita   ||
     ► S - || Sair            ||
@@ -31,26 +31,33 @@ while True:
     msg = input()
 
     try:
-        if msg == "1":
+        if msg == "catalogo":
             pagina = 2
             tcp.send(msg.encode())
             data_serialized = tcp.recv(4096)           
             data_received = pickle.loads(data_serialized)
-            print("=================== Filmes ======================")
+            print("     ======================= Filmes ========================")
             for i in range(len(data_received)):
                 nome = str(data_received[i])
                 nome = nome.split("|")
-                # print(f'    {i+1} ►  {nome[0]} :: {nome[2]}')
                 print(f'    {i+1:<5} ►  {nome[0]:<30} :: {nome[2]}')
             print()
-            print("voltar: v | Sair: s | Alugar: numero")
-            # select = input("Opção: ")
+            print("voltar | sair | alugar")
+        elif msg =="alugar":
+            tcp.send(msg.encode())
+            fita = input("Fita: ")
+            msg = fita
+            tcp.send(msg.encode())
+            retorno = tcp.recv(1024)
+            retorno = retorno.decode()
+            print(retorno)
+            pagina = 1
         else:
             pagina = 1
 
     except Exception as e:
         print('Erro:', e)
         print("Conexão encerrada")
-    if msg == "s":
+    if msg == "s" or msg == "sair":
         break
 tcp.close()
