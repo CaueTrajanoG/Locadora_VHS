@@ -16,22 +16,30 @@ with open("Data/filmes.json", encoding="utf-8") as filmes:
     lista_de_filmes = json.load(filmes)
 
 for filme in lista_de_filmes:
-    arv.add(Filme(filme['nome'],filme['preco']))
+    arv.add(Filme(filme['nome'],filme['preco'],filme['disponibilidade']))
 
 def showCat():
     arr = []
     arr = arv.returnAll()
-    return arr
+    for i in range(len(arr)):
+                nome = str(arr[i])
+                print(nome)
+                # print(f'    {i+1:<5} ►  {nome[0]:<60} :: {nome[2]}')
+    # return arr
 
 def rentMovie(title):
-    filme = str(arv.deleteNode(Filme(title,0)))
-    filme = filme.split("|")    
-    arv.add(filme[0].strip(), filme[1].strip())
+    filme = arv.deleteNode(Filme(title,0,''))
+    if filme.estado == 'disponivel':
+        filme.estado = 'indisponivel'
+        print('Filme alugado')
+    else:
+        print('Este filme está disponivel')
+
 
 def verifyDisp(title):
-    if(arv.search(Filme(title,0)) is not None):
+    if(arv.search(Filme(title,0,0)) is not None):
         print("Filme existe")
-        nome = str(arv.search(Filme(title,0)))
+        nome = str(arv.search(Filme(title,0,0)))
         nome = nome.split("|")
         print(nome[2].strip())
         rentMovie(nome[0].strip())
@@ -43,6 +51,7 @@ def verifyDisp(title):
             pass
     else:
         print("Filme indisponivel")
+verifyDisp("Casablanca")
 verifyDisp("Casablanca")
 
 
