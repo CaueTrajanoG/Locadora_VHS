@@ -26,7 +26,7 @@ def comunicacao(mensagem, conexao, cliente):
 	try:
 		if msg == "catalogo":
 			print('Mostrar catalogo')
-			showCat()
+			#Popula um array para enviar para o client
 			arr = showCat()
 			data_serialized = pickle.dumps(arr)
 			conexao.send(data_serialized)			

@@ -8,7 +8,7 @@ root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, root_dir)
 
 #Importando as classes necessárias
-from Structures.binarySearchTree import BinarySearchTree
+from structures.BinarySearchTree import BinarySearchTree
 from Objects.filme import Filme
 
 
@@ -23,10 +23,11 @@ for filme in lista_de_filmes:
 def showCat():
     arr = []
     arr = arv.returnAll()
-    for i in range(len(arr)):
-        nome = str(arr[i])
-        nome = nome.split("|")
-        print(nome[0])
-    #return arr
+    #--Isto aqui é so para testes!!!
+    # for i in range(len(arr)):
+    #     nome = str(arr[i])
+    #     nome = nome.split("|")
+    #     print(nome[0])
+    return arr
 
-
+showCat()

@@ -142,8 +142,7 @@ class BinarySearchTree:
 
     def __returnAll(self, node):
         if node is None:
-            return []
-    
+            return []    
         arr = []
         arr.extend(self.__returnAll(node.leftChild))
         arr.append(node)
