@@ -36,11 +36,11 @@ while True:
             tcp.send(msg.encode())
             data_serialized = tcp.recv(4096)           
             data_received = pickle.loads(data_serialized)
-            print("     ======================= Filmes ========================")
+            print("     ========================== Filmes ===========================")
             for i in range(len(data_received)):
                 nome = str(data_received[i])
                 nome = nome.split("|")
-                print(f'    {i+1:<5} ►  {nome[0]:<50} :: {nome[2]}')
+                print(f'    {i+1:<5} ►  {nome[0]:<60} :: {nome[2]}')
             print()
             print("voltar | sair | alugar")
         elif msg =="alugar":
