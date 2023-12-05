@@ -1,95 +1,117 @@
 [
     {
       "nome": "O Poderoso Chefão",
-      "preco": 25.90
+      "preco": 25.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "Cidadão Kane",
-      "preco": 29.90
+      "preco": 29.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "Casablanca",
-      "preco": 22.90
+      "preco": 22.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Mágico de Oz",
-      "preco": 21.90
+      "preco": 21.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "Lawrence da Arábia",
-      "preco": 24.90
+      "preco": 24.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "2001: Uma Odisseia no Espaço",
-      "preco": 27.90
+      "preco": 27.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Sétimo Selo",
-      "preco": 28.90
+      "preco": 28.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Padrinho Parte II",
-      "preco": 32.90
+      "preco": 32.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Exorcista",
-      "preco": 26.90
+      "preco": 26.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Silêncio dos Inocentes",
-      "preco": 30.90
+      "preco": 30.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Resgate do Soldado Ryan",
-      "preco": 29.90
+      "preco": 29.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "Pulp Fiction",
-      "preco": 25.90
+      "preco": 25.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "Forrest Gump",
-      "preco": 24.90
+      "preco": 24.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Senhor dos Anéis: A Sociedade do Anel",
-      "preco": 27.90
+      "preco": 27.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Senhor dos Anéis: As Duas Torres",
-      "preco": 28.90
+      "preco": 28.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Senhor dos Anéis: O Retorno do Rei",
-      "preco": 29.90
+      "preco": 29.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "Beleza Americana",
-      "preco": 26.90
+      "preco": 26.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Gladiador",
-      "preco": 28.90
+      "preco": 28.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Rei Leão",
-      "preco": 22.90
+      "preco": 22.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "A Lista de Schindler",
-      "preco": 25.90
+      "preco": 25.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Senhor dos Anéis: A Sociedade do Anel - Edição Estendida",
-      "preco": 32.90
+      "preco": 32.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Senhor dos Anéis: As Duas Torres - Edição Estendida",
-      "preco": 33.90
+      "preco": 33.90,
+      "disponibilidade": "disponivel"
     },
     {
       "nome": "O Senhor dos Anéis: O Retorno do Rei - Edição Estendida",
-      "preco": 34.90
+      "preco": 34.90,
+      "disponibilidade": "disponivel"
     }
   ]
-  
