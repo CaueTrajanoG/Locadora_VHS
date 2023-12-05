@@ -20,7 +20,6 @@ def conecta_cliente(conect, cliente):
 	conexao.close()
 	print('002', cliente)
 
-
 def comunicacao(mensagem, conexao, cliente):
 	msg = mensagem.decode()
 	try:
