@@ -161,7 +161,7 @@ class BinarySearchTree:
         # garbage collector fará o trabalho de remoção dos nós automaticamente. 
         self.__root = None
 
-    # delete a node with the given key and return its data
+    # delete a node with the given key and return its Data
     def deleteNode(self, key:any)->'Node':
         node = self.__searchData(key,self.__root)
         if node is not None:
