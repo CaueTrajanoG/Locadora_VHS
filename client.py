@@ -12,22 +12,29 @@ msg = ""
 pagina = 1
 
 
+def ticket(title):
+    print('+---------------------------------+')
+    print('|         Comprovante             |')
+    print(f'| Filme: {title:<26}|')
+    print(f'| Preço: 18,90 R$                |')
+    print('|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _| ')
 
 def showMenu():
     print('''
 Opções:
           +___________________+
           ||                 ||
-    ► 1 - || Catálogo        ||
-    ► 2 - || Alugar fita     ||
-    ► 3 - || Devolver fita   ||
-    ► S - || Sair            ||
+    ►     || Catálogo        ||
+    ►     || Alugar          ||
+    ►     || Devolver        ||
+    ►     || Sair            ||
           ||_________________|| 
 ''')
 
 while True:    
     if pagina == 1:
         showMenu()
+    print(" ►", end=" ")
     msg = input()
 
     try:
@@ -36,13 +43,16 @@ while True:
             tcp.send(msg.encode())
             data_serialized = tcp.recv(4096)           
             data_received = pickle.loads(data_serialized)
+            print()
             print("     ========================== Filmes ===========================")
             for i in range(len(data_received)):
                 nome = str(data_received[i])
                 nome = nome.split("|")
-                print(f'    {i+1:<5} ►  {nome[0]:<60} :: {nome[2]}')
+                print(f'  ►  {nome[0]:<60} :: {nome[2]}')
             print()
-            print("voltar | sair | alugar | devolver")
+            print("         -=-=-=-=-=-=-=-= MENU -=-=-=-=-=-=-=-")
+            print("         | alugar | devolver | voltar | sair |")
+            print("         =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
         elif msg =="alugar":
             tcp.send(msg.encode())
             fita = input("Fita: ")
@@ -50,7 +60,9 @@ while True:
             tcp.send(msg.encode())
             retorno = tcp.recv(1024)
             retorno = retorno.decode()
+            ticket(fita)
             print(retorno)
+
             pagina = 1
         elif msg =="devolver":
             tcp.send(msg.encode())

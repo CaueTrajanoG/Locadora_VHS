@@ -48,6 +48,6 @@ def comunicacao(mensagem, conexao, cliente):
 while True:    
 	# Aguarda por uma conexão
     conexao, cliente = tcp.accept()
-	#Recebe a conexão e inicia uma nova thread para o cliente
+	# Recebe a conexão e inicia uma nova thread para o cliente
     threading.Thread(target=conecta_cliente, args=(conexao, cliente)).start()
 conexao.close()
