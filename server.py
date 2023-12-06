@@ -1,7 +1,7 @@
 import pickle
 import socket
 import threading
-from Objects.catalogo import showCat
+from Objects.catalogo import showCat,verifyDisp,verifyRent
 
 HOST = '0.0.0.0'  # Endereco IP do Servidor
 PORT = 5000  # Porta que o Servidor está
@@ -25,16 +25,19 @@ def comunicacao(mensagem, conexao, cliente):
 	try:
 		if msg == "catalogo":
 			print('Mostrar catalogo')
-			#Popula um array para enviar para o client
 			arr = showCat()
 			data_serialized = pickle.dumps(arr)
 			conexao.send(data_serialized)			
 		if msg == "alugar":
 			msg = conexao.recv(1024)
 			msg = msg.decode()
-			print(f'Fita alugada: {msg.decode()}')
-			confirm = "Aluguel efetuado!"
-			conexao.send(confirm.encode())
+			retorno = verifyDisp(str(msg))
+			conexao.send(retorno.encode())
+		if msg == "devolver":
+			msg = conexao.recv(1024)
+			msg = msg.decode()
+			retorno = verifyRent(str(msg))
+			conexao.send(retorno.encode())
 
 	except Exception as e:
 		print('Erro:', e)

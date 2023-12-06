@@ -42,8 +42,17 @@ while True:
                 nome = nome.split("|")
                 print(f'    {i+1:<5} ►  {nome[0]:<60} :: {nome[2]}')
             print()
-            print("voltar | sair | alugar")
+            print("voltar | sair | alugar | devolver")
         elif msg =="alugar":
+            tcp.send(msg.encode())
+            fita = input("Fita: ")
+            msg = fita
+            tcp.send(msg.encode())
+            retorno = tcp.recv(1024)
+            retorno = retorno.decode()
+            print(retorno)
+            pagina = 1
+        elif msg =="devolver":
             tcp.send(msg.encode())
             fita = input("Fita: ")
             msg = fita

@@ -21,37 +21,43 @@ for filme in lista_de_filmes:
 def showCat():
     arr = []
     arr = arv.returnAll()
-    for i in range(len(arr)):
-                nome = str(arr[i])
-                print(nome)
-                # print(f'    {i+1:<5} ►  {nome[0]:<60} :: {nome[2]}')
-    # return arr
+    #Este for é para testes
+    # for i in range(len(arr)):
+    #     nome = str(arr[i])
+    #     print(nome)
+    return arr
 
 def rentMovie(title):
-    filme = arv.deleteNode(Filme(title,0,''))
-    if filme.estado == 'disponivel':
-        filme.estado = 'indisponivel'
-        print('Filme alugado')
-    else:
-        print('Este filme está disponivel')
+    filme = arv.search(Filme(title,0,''))
+    filme.estado = 'Alugado'
 
+def returnMovie(title):
+    filme = arv.search(Filme(title,0,''))
+    filme.estado = 'disponivel'  
 
 def verifyDisp(title):
     if(arv.search(Filme(title,0,0)) is not None):
-        print("Filme existe")
         nome = str(arv.search(Filme(title,0,0)))
         nome = nome.split("|")
-        print(nome[2].strip())
-        rentMovie(nome[0].strip())
-        if(nome[2]=="disponivel"):
-            #funçao que aluga
-            pass
-        else:
-            #return "Não foi possivel"
-            pass
+        if nome[2].strip() == "disponivel":
+            rentMovie(nome[0].strip())
+            return "Filme Alugado com sucesso."
     else:
-        print("Filme indisponivel")
-verifyDisp("Casablanca")
-verifyDisp("Casablanca")
+        return "Este filme não está no catalogo."
+
+def verifyRent(title):
+    if(arv.search(Filme(title,0,0)) is not None):
+        nome = str(arv.search(Filme(title,0,0)))
+        nome = nome.split("|")
+        if nome[2].strip() == "Alugado":
+            returnMovie(nome[0].strip())
+            return "Filme devolvido com sucesso."
+
+#Testando o rent e returnMovies
+# verifyDisp("casablanca")
+# showCat()
+# verifyRent("casablanca")
+# showCat()
+
 
 
