@@ -41,9 +41,14 @@ def verifyDisp(title):
         nome = nome.split("|")
         if nome[2].strip() == "disponivel":
             rentMovie(nome[0].strip())
-            return "Filme Alugado com sucesso."
+            # 902 > sucesso ao alugar
+            return "902"
+        else:
+            # 904 Não foi possivel alugar
+            return "904"
     else:
-        return "Este filme não está no catalogo."
+        # 906 filme não encontrado
+        return "906"
 
 def verifyRent(title):
     if(arv.search(Filme(title,0,0)) is not None):

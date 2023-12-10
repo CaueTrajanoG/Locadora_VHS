@@ -1,5 +1,6 @@
 import pickle
 import socket
+import time
 
 HOST = '127.0.0.1'  # Endereco IP do Servidor
 PORT = 5000  # Porta que o Servidor está
@@ -13,11 +14,12 @@ pagina = 1
 
 
 def ticket(title):
-    print('+---------------------------------+')
-    print('|         Comprovante             |')
-    print(f'| Filme: {title:<26}|')
-    print(f'| Preço: 18,90 R$                |')
-    print('|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _| ')
+    print(f'+---------------------------------+')
+    print(f'|         Comprovante             |')
+    print(f'| Filme: {title:<26}|'              )
+    print(f'| Preço: 18,90 R$                 |')
+    print(f'| Bom filme ㋡                    |')
+    print(f'|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _| ')
 
 def showMenu():
     print('''
@@ -55,13 +57,18 @@ while True:
             print("         =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
         elif msg =="alugar":
             tcp.send(msg.encode())
-            fita = input("Fita: ")
-            msg = fita
+            msg = input(" ► Fita: ")            
             tcp.send(msg.encode())
             retorno = tcp.recv(1024)
             retorno = retorno.decode()
-            ticket(fita)
-            print(retorno)
+            if retorno == "902":
+                ticket(msg)
+            if retorno == "904":
+                time.sleep(1)
+                print("\n ⚠ ⚠ ⚠ Este filme não está disponivel para locação ⚠ ⚠ ⚠ \n")
+            if retorno == "906":
+                time.sleep(1)
+                print("\n  ⚠  Filme não encontrado... tente novamente \n")
 
             pagina = 1
         elif msg =="devolver":
@@ -73,12 +80,16 @@ while True:
             retorno = retorno.decode()
             print(retorno)
             pagina = 1
+        
+        elif msg == "s" or msg == "sair":
+            break
+            
         else:
+            print('\n Opção invalida... tente novamente.')
+            time.sleep(2)
             pagina = 1
 
     except Exception as e:
         print('Erro:', e)
         print("Conexão encerrada")
-    if msg == "s" or msg == "sair":
-        break
 tcp.close()

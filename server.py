@@ -3,12 +3,16 @@ import socket
 import threading
 from Objects.catalogo import showCat,verifyDisp,verifyRent
 
+#Mutexes
+mutex_alugar = threading.Semaphore(1)
+mutex_devolver = threading.Semaphore(1)
+
 HOST = '0.0.0.0'  # Endereco IP do Servidor
 PORT = 5000  # Porta que o Servidor está
 tcp = socket.socket(socket.AF_INET,  socket.SOCK_STREAM)
 orig = (HOST, PORT)
 tcp.bind(orig)
-print('Server ON!')
+print('  ► ► Server ON!')
 
 tcp.listen(5) # Permite até 5 conexões pendentes
 
@@ -18,25 +22,33 @@ def conecta_cliente(conect, cliente):
 		if not msg:break		
 		comunicacao(msg, conect, cliente)
 	conexao.close()
-	print('002', cliente)
+	print("Cliente: ",cliente, " desconectado.")
 
 def comunicacao(mensagem, conexao, cliente):
 	msg = mensagem.decode()
 	try:
 		if msg == "catalogo":
-			print('Mostrar catalogo')
+
 			arr = showCat()
 			data_serialized = pickle.dumps(arr)
-			conexao.send(data_serialized)			
+			conexao.send(data_serialized)		
+
 		if msg == "alugar":
+
+			mutex_alugar.acquire()
 			msg = conexao.recv(1024)
 			msg = msg.decode()
 			retorno = verifyDisp(str(msg))
+			mutex_alugar.release()
 			conexao.send(retorno.encode())
+
 		if msg == "devolver":
+
+			mutex_devolver.acquire()
 			msg = conexao.recv(1024)
 			msg = msg.decode()
 			retorno = verifyRent(str(msg))
+			mutex_devolver.release()
 			conexao.send(retorno.encode())
 
 	except Exception as e:
