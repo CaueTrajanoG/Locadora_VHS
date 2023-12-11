@@ -2,13 +2,12 @@ import pickle
 import socket
 import threading
 from Objects.catalogo import showCat,verifyDisp,verifyRent
+from env import HOST, PORT
 
 #Mutexes
 mutex_alugar = threading.Semaphore(1)
 mutex_devolver = threading.Semaphore(1)
 
-HOST = '0.0.0.0'  # Endereco IP do Servidor
-PORT = 5000  # Porta que o Servidor está
 tcp = socket.socket(socket.AF_INET,  socket.SOCK_STREAM)
 orig = (HOST, PORT)
 tcp.bind(orig)
@@ -31,7 +30,7 @@ def comunicacao(mensagem, conexao, cliente):
 
 			arr = showCat()
 			data_serialized = pickle.dumps(arr)
-			conexao.send(data_serialized)		
+			conexao.send(data_serialized)
 
 		if msg == "alugar":
 

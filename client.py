@@ -1,17 +1,24 @@
 import pickle
 import socket
 import time
-
-HOST = '127.0.0.1'  # Endereco IP do Servidor
-PORT = 5000  # Porta que o Servidor está
+from env import HOST, PORT
 
 # abre um socket UDP
 tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 dest = (HOST, PORT)
-tcp.connect(dest)
 msg = ""
 pagina = 1
 
+connected = False
+while not connected:
+    try:
+        tcp.connect(dest)
+        connected = True
+    except ConnectionRefusedError:
+        print(
+            f'Não foi possível se conectar com o HOST {HOST} na PORTA {PORT}\n'
+            f'Tentando novamente...')
+        time.sleep(30)
 
 def ticket(title):
     print(f'+---------------------------------+')
