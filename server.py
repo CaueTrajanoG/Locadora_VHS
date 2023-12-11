@@ -2,6 +2,7 @@ import pickle
 import socket
 import threading
 from Objects.catalogo import showCat,verifyDisp,verifyRent
+from Objects.historico import get_all_hist, increment_hist
 from env import HOST, PORT
 
 #Mutexes
@@ -39,16 +40,23 @@ def comunicacao(mensagem, conexao, cliente):
 			msg = msg.decode()
 			retorno = verifyDisp(str(msg))
 			mutex_alugar.release()
+			if retorno == '902':
+				increment_hist(cliente, str(msg))
 			conexao.send(retorno.encode())
 
 		if msg == "devolver":
-
 			mutex_devolver.acquire()
 			msg = conexao.recv(1024)
 			msg = msg.decode()
 			retorno = verifyRent(str(msg))
 			mutex_devolver.release()
 			conexao.send(retorno.encode())
+   
+		if msg == "historico":
+			hist = get_all_hist(cliente)
+			data_serialized = pickle.dumps(hist)
+			conexao.send(data_serialized)
+
 
 	except Exception as e:
 		print('Erro:', e)

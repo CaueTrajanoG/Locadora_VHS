@@ -36,6 +36,7 @@ Opções:
     ►     || Catálogo        ||
     ►     || Alugar          ||
     ►     || Devolver        ||
+    ►     || Histórico       ||
     ►     || Sair            ||
           ||_________________|| 
 ''')
@@ -72,7 +73,7 @@ while True:
                 ticket(msg)
             if retorno == "904":
                 time.sleep(1)
-                print("\n ⚠ ⚠ ⚠ Este filme não está disponivel para locação ⚠ ⚠ ⚠ \n")
+                print("\n ⚠ ⚠ ⚠ Este filme não está disponível para locação ⚠ ⚠ ⚠ \n")
             if retorno == "906":
                 time.sleep(1)
                 print("\n  ⚠  Filme não encontrado... tente novamente \n")
@@ -87,12 +88,19 @@ while True:
             retorno = retorno.decode()
             print(retorno)
             pagina = 1
+            
+        elif msg == "historico":
+            tcp.send(msg.encode())
+            hist_data = tcp.recv(4096)
+            data_received = pickle.loads(hist_data)
+            print(data_received)
+            pagina = 1
         
         elif msg == "s" or msg == "sair":
             break
             
         else:
-            print('\n Opção invalida... tente novamente.')
+            print('\n Opção inválida... tente novamente.')
             time.sleep(2)
             pagina = 1
 

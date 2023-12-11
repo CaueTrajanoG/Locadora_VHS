@@ -7,6 +7,10 @@ class Filme:
     @property
     def estado(self):
         return self.__estado
+    
+    @property
+    def titulo(self):
+        return self.__titulo
 
     @estado.setter
     def estado(self, novo_estado):

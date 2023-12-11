@@ -27,6 +27,9 @@ def showCat():
     #     print(nome)
     return arr
 
+def getMovie(title):
+    return arv.search(Filme(title,0,''))
+
 def rentMovie(title):
     filme = arv.search(Filme(title,0,''))
     filme.estado = 'Alugado'
