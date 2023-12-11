@@ -140,14 +140,12 @@ class BinarySearchTree:
             print(f'{node.data} ',end='')
             self.__inorder(node.rightChild)
 
-    def __returnAll(self, node):
-        if node is None:
-            return []    
-        arr = []
-        arr.extend(self.__returnAll(node.leftChild))
-        arr.append(node)
-        arr.extend(self.__returnAll(node.rightChild))
-        return arr
+    def __returnAll(self, node, array=[]):
+        if node:
+            self.__returnAll(node.leftChild, array)
+            array.append(node.data)
+            self.__returnAll(node.rightChild, array)
+            return array
 
     def __postorder(self, node):
         if( node != None):
