@@ -11,6 +11,10 @@ class Filme:
     @property
     def titulo(self):
         return self.__titulo
+    
+    @property
+    def preco(self):
+        return self.__preco
 
     @estado.setter
     def estado(self, novo_estado):
@@ -20,10 +24,10 @@ class Filme:
         return f'{self.__titulo} | {self.__preco} | {self.__estado}'
 
     def __eq__(self, outro):
-        return self.__titulo == outro.__titulo
+        return self.__titulo.lower() == outro.__titulo.lower()
 
     def __lt__(self, outro):
-        return self.__titulo < outro.__titulo
+        return self.__titulo.lower() < outro.__titulo.lower()
 
     def __gt__(self, outro):
-        return self.__titulo >= outro.__titulo
+        return self.__titulo.lower() >= outro.__titulo.lower()
