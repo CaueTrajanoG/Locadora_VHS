@@ -1,117 +1,117 @@
 [
     {
-      "nome": "o poderoso chefão",
+      "nome": "O Poderoso Chefão",
       "preco": 25.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "cidadão kane",
+      "nome": "Cidadão Kane",
       "preco": 29.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "casablanca",
+      "nome": "Casablanca",
       "preco": 22.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o mágico de oz",
+      "nome": "O Mágico de Oz",
       "preco": 21.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "lawrence da arábia",
+      "nome": "Lawrence da Arábia",
       "preco": 24.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "2001: uma odisseia no espaço",
+      "nome": "2001: Uma Odisseia no Espaço",
       "preco": 27.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o sétimo selo",
+      "nome": "O Sétimo Selo",
       "preco": 28.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o padrinho parte 2",
+      "nome": "O Padrinho Parte 2",
       "preco": 32.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o exorcista",
+      "nome": "O Exorcista",
       "preco": 26.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o silêncio dos inocentes",
+      "nome": "O silêncio dos Inocentes",
       "preco": 30.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o resgate do soldado ryan",
+      "nome": "O Resgate do Soldado Ryan",
       "preco": 29.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "pulp fiction",
+      "nome": "Pulp Fiction",
       "preco": 25.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "forrest gump",
+      "nome": "Forrest Gump",
       "preco": 24.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o senhor dos anéis: a sociedade do anel",
+      "nome": "O Senhor dos Anéis: A Sociedade do Anel",
       "preco": 27.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o senhor dos anéis: as duas torres",
+      "nome": "O Senhor dos Anéis: As Duas Torres",
       "preco": 28.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o senhor dos anéis: o retorno do rei",
+      "nome": "O Senhor dos Anéis: O Retorno do Rei",
       "preco": 29.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "beleza americana",
+      "nome": "Beleza Americana",
       "preco": 26.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o gladiador",
+      "nome": "O Gladiador",
       "preco": 28.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o rei leão",
+      "nome": "O Rei Leão",
       "preco": 22.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "a lista de schindler",
+      "nome": "A Lista de Schindler",
       "preco": 25.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o senhor dos anéis: a sociedade do anel - edição estendida",
+      "nome": "O Senhor dos Anéis: A Sociedade do Anel - Edição Estendida",
       "preco": 32.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o senhor dos anéis: as duas torres - edição estendida",
+      "nome": "O Senhor dos Anéis: As Duas Torres - Edição Estendida",
       "preco": 33.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     },
     {
-      "nome": "o senhor dos anéis: o retorno do rei - edição estendida",
+      "nome": "O Senhor dos Anéis: O Retorno do Rei - Edição Estendida",
       "preco": 34.90,
-      "disponibilidade": "disponivel"
+      "disponibilidade": "Disponivel"
     }
   ]

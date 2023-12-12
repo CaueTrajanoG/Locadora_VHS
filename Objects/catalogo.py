@@ -30,20 +30,17 @@ def showCat():
 def getMovie(title):
     return arv.search(Filme(title,0,''))
 
-def rentMovie(title):
-    filme = arv.search(Filme(title,0,''))
+def rentMovie(filme):
     filme.estado = 'Alugado'
 
-def returnMovie(title):
-    filme = arv.search(Filme(title,0,''))
-    filme.estado = 'disponivel'  
+def returnMovie(filme):
+    filme.estado = 'Disponível'  
 
 def verifyDisp(title):
-    if(arv.search(Filme(title,0,0)) is not None):
-        nome = str(arv.search(Filme(title,0,0)))
-        nome = nome.split("|")
-        if nome[2].strip() == "disponivel":
-            rentMovie(nome[0].strip())
+    filme = getMovie(title)
+    if filme:
+        if filme.estado == "Disponível":
+            rentMovie(filme)
             # 902 > sucesso ao alugar
             return "902"
         else:
@@ -54,12 +51,30 @@ def verifyDisp(title):
         return "906"
 
 def verifyRent(title):
-    if(arv.search(Filme(title,0,0)) is not None):
-        nome = str(arv.search(Filme(title,0,0)))
-        nome = nome.split("|")
-        if nome[2].strip() == "Alugado":
-            returnMovie(nome[0].strip())
+    filme = getMovie(title)
+    if filme:
+        if filme.estado == "Alugado":
+            returnMovie(filme)
             return "Filme devolvido com sucesso."
+        
+def get_ticket_str(title):
+    movie = getMovie(title)
+    titulo = movie.titulo
+    preco = str(movie.preco).replace('.', ',')
+    
+    linha_superior = "+----------------------------------+"
+    linha_inferior = "_ " * (len(linha_superior)//2)
+    
+    formato_filme = "|{: ^34}|"
+    formato_preco = "|{: ^34}|"
+    formato_mensagem = "|{: ^33}|"
+    
+    print(linha_superior)
+    print(formato_filme.format("Comprovante"))
+    print(formato_filme.format("Filme: {}".format(titulo)))
+    print(formato_preco.format("Preço: R${}".format(preco)))
+    print(formato_mensagem.format("Bom filme ㋡"))
+    print(f' {linha_inferior}')
 
 #Testando o rent e returnMovies
 # verifyDisp("casablanca")

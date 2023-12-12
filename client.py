@@ -2,6 +2,8 @@ import pickle
 import socket
 import time
 from env import HOST, PORT
+from Objects.historico import print_hist
+from Objects.catalogo import get_ticket_str
 
 # abre um socket UDP
 tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -19,14 +21,6 @@ while not connected:
             f'Não foi possível se conectar com o HOST {HOST} na PORTA {PORT}\n'
             f'Tentando novamente...')
         time.sleep(30)
-
-def ticket(title):
-    print(f'+---------------------------------+')
-    print(f'|         Comprovante             |')
-    print(f'| Filme: {title:<26}|'              )
-    print(f'| Preço: 18,90 R$                 |')
-    print(f'| Bom filme ㋡                    |')
-    print(f'|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _| ')
 
 def showMenu():
     print('''
@@ -53,6 +47,7 @@ while True:
             tcp.send(msg.encode())
             data_serialized = tcp.recv(4096)           
             data_received = pickle.loads(data_serialized)
+            print([movie.titulo for movie in data_received])
             print()
             print("     ========================== Filmes ===========================")
             for i in range(len(data_received)):
@@ -65,12 +60,12 @@ while True:
             print("         =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
         elif msg =="alugar":
             tcp.send(msg.encode())
-            msg = input(" ► Fita: ")            
+            msg = input(" ► Fita: ")
             tcp.send(msg.encode())
             retorno = tcp.recv(1024)
             retorno = retorno.decode()
             if retorno == "902":
-                ticket(msg)
+                get_ticket_str(msg)
             if retorno == "904":
                 time.sleep(1)
                 print("\n ⚠ ⚠ ⚠ Este filme não está disponível para locação ⚠ ⚠ ⚠ \n")
@@ -93,7 +88,7 @@ while True:
             tcp.send(msg.encode())
             hist_data = tcp.recv(4096)
             data_received = pickle.loads(hist_data)
-            print(data_received)
+            print_hist(data_received)
             pagina = 1
         
         elif msg == "s" or msg == "sair":
