@@ -28,7 +28,7 @@ def get_hist(client):
 def print_hist(hist):
     if len(hist) > 0:
         total = 0
-        print('\n       ---- Histórico de Alugueis ----')
+        print('\n       ---- Histórico de Aluguéis ----')
         for i in range(len(hist)):
             title = hist[i].titulo
             value = hist[i].preco
@@ -36,6 +36,6 @@ def print_hist(hist):
             print(f'    -> {i+1:>02} - {title} | Preço: R${str_value}')
             total += hist[i].preco
         str_total = str(round(total, 2)).replace('.', ',')
-        print(f'\n    -- Total gasto com alugueis: R${str_total} --')
+        print(f'\n    -- Total gasto com aluguéis: R${str_total} --')
     else:
         print('\n---- Histórico vazio. Que tal alugar um filme? ---\n')
