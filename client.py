@@ -7,6 +7,7 @@ from Objects.catalogo import get_ticket_str
 
 # abre um socket UDP
 tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+tcp.settimeout(1)
 dest = (HOST, PORT)
 msg = ""
 pagina = 1
@@ -45,7 +46,13 @@ while True:
         if msg == "catalogo":
             pagina = 2
             tcp.send(msg.encode())
-            data_serialized = tcp.recv(4096)           
+            data_serialized = b""
+            while True:
+                try:
+                    packet = tcp.recv(4096)
+                    data_serialized += packet
+                except socket.timeout:
+                    break
             data_received = pickle.loads(data_serialized)
             # print([movie.titulo for movie in data_received])
             print()
@@ -88,7 +95,13 @@ while True:
             
         elif msg == "historico":
             tcp.send(msg.encode())
-            hist_data = tcp.recv(4096)
+            hist_data = b""
+            while True:
+                try:
+                    packet = tcp.recv(4096)
+                    hist_data += packet
+                except socket.timeout:
+                    break
             data_received = pickle.loads(hist_data)
             print_hist(data_received)
             pagina = 1
