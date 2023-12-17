@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+from structures.Exceptions import CatalogException
 
 #Caminho para o diretório raiz
 root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,13 +20,9 @@ for filme in lista_de_filmes:
     arv.add(Filme(filme['nome'],filme['preco'],filme['disponibilidade']))
 
 def showCat():
-    arr = []
+    arr = []    
     arr = arv.returnAll()
-    #Este for é para testes
-    # for i in range(len(arr)):
-    #     nome = str(arr[i])
-    #     print(nome)
-    return arr
+    return arr    
 
 def getMovie(title):
     return arv.search(Filme(title,0,''))
@@ -44,10 +41,10 @@ def verifyDisp(title):
             # 902 > sucesso ao alugar
             return "902"
         else:
-            # 904 Não foi possivel alugar
+            # 904 > Não foi possivel alugar
             return "904"
     else:
-        # 906 filme não encontrado
+        # 906 > filme não encontrado
         return "906"
 
 def verifyRent(title):

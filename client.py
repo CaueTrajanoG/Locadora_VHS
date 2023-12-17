@@ -35,7 +35,7 @@ Opções:
           ||_________________|| 
 ''')
 
-while True:    
+while True:
     if pagina == 1:
         showMenu()
     print(" ►", end=" ")
@@ -47,7 +47,7 @@ while True:
             tcp.send(msg.encode())
             data_serialized = tcp.recv(4096)           
             data_received = pickle.loads(data_serialized)
-            print([movie.titulo for movie in data_received])
+            # print([movie.titulo for movie in data_received])
             print()
             print("     ========================== Filmes ===========================")
             for i in range(len(data_received)):
@@ -58,6 +58,8 @@ while True:
             print("         -=-=-=-=-=-=-=-= MENU -=-=-=-=-=-=-=-")
             print("         | alugar | devolver | voltar | sair |")
             print("         =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+
+
         elif msg =="alugar":
             tcp.send(msg.encode())
             msg = input(" ► Fita: ")

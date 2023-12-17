@@ -4,8 +4,10 @@ import threading
 from Objects.catalogo import showCat,verifyDisp,verifyRent
 from Objects.historico import get_all_hist, increment_hist
 from env import HOST, PORT
+from structures.Exceptions import CatalogException
 
 #Mutexes
+mutex_consulta = threading.Semaphore(1)
 mutex_alugar = threading.Semaphore(1)
 mutex_devolver = threading.Semaphore(1)
 
@@ -29,27 +31,41 @@ def comunicacao(mensagem, conexao, cliente):
 	try:
 		if msg == "catalogo":
 
-			arr = showCat()
-			data_serialized = pickle.dumps(arr)
-			conexao.send(data_serialized)
+			#RC
+			try:
+				mutex_consulta.acquire()
+				arr = showCat()
+				mutex_consulta.release()
+				data_serialized = pickle.dumps(arr)
+				conexao.send(data_serialized)
+				arr.clear()
+			except:
+				mensagem = '909'
+				conexao.send(mensagem.encode())
 
 		if msg == "alugar":
 
-			mutex_alugar.acquire()
 			msg = conexao.recv(1024)
 			msg = msg.decode()
+
+			#RC
+			mutex_alugar.acquire()
 			retorno = verifyDisp(str(msg))
 			mutex_alugar.release()
+			
 			if retorno == '902':
 				increment_hist(cliente, str(msg))
 			conexao.send(retorno.encode())
 
 		if msg == "devolver":
-			mutex_devolver.acquire()
 			msg = conexao.recv(1024)
 			msg = msg.decode()
+
+			#RC
+			mutex_devolver.acquire()
 			retorno = verifyRent(str(msg))
 			mutex_devolver.release()
+
 			conexao.send(retorno.encode())
    
 		if msg == "historico":

@@ -1,5 +1,7 @@
 # Locadora_VHS
+
 #Titulo do projeto:
+
 - Sistema de locação de filmes VHS online.
 
 Autores:
@@ -29,8 +31,8 @@ No menu inicial do client temos as seguintes opções:
 - Ao acessar o catalogo voce pode digitar v para voltar ao menu inicial
 - Para encerrar o Server.py basta pressionar crtl + break
 
-
 #Arquivos do projeto
+
 - filmes.json: contém um json com uma lista inicial de filmes do catálogo
 - catalogo.py é responsável por administrar a arvore binaria e a comunicação do server com os filmes na arvore, e também é ele quem monta a arvore no inicio do programa
 - filme.py é o objeto filme que é instanciado e armazenado na arvore
@@ -39,6 +41,7 @@ No menu inicial do client temos as seguintes opções:
 - client.py é o arquivo onde o cliente pode acessar o programa e alugar uma fita caso disponível
 
 #Pré-requisitos para execução
+
 - informar os pacotes/bibliotecas que precisam ser instalados, o propósito de cada um deles e como instalá-los antes de executar o código;
 
 # Informações de conexão
@@ -48,6 +51,10 @@ Utilizamos o protocolo TCP para a comunicação cliente/servidor
 # Protocolo de Aplicação
 
 ...Sendo desenvolvido
+902 > sucesso ao alugar um filme
+904 > Não foi possivel alugar este filme
+906 > filme não encontrado
+909 > Erro ao exibir catalogo
 
 # Detalhes sobre região crítica
 
