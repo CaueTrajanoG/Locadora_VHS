@@ -7,9 +7,8 @@ from env import HOST, PORT
 from structures.Exceptions import CatalogException
 
 #Mutexes
-mutex_consulta = threading.Semaphore(1)
 mutex_alugar = threading.Semaphore(1)
-mutex_devolver = threading.Semaphore(1)
+
 
 tcp = socket.socket(socket.AF_INET,  socket.SOCK_STREAM)
 orig = (HOST, PORT)
@@ -29,17 +28,16 @@ def conecta_cliente(conect, cliente):
 def comunicacao(mensagem, conexao, cliente):
 	msg = mensagem.decode()
 	try:
-		if msg == "catalogo":
+		if msg == "catalogo" or msg == "catálogo":
 
 			#RC
 			try:
-				mutex_consulta.acquire()
 				arr = showCat()
-				mutex_consulta.release()
 				data_serialized = pickle.dumps(arr)
 				conexao.send(data_serialized)
 				arr.clear()
 			except:
+				# 909 > Erro ao carregar o catálogo
 				mensagem = '909'
 				conexao.send(mensagem.encode())
 
@@ -62,9 +60,7 @@ def comunicacao(mensagem, conexao, cliente):
 			msg = msg.decode()
 
 			#RC
-			mutex_devolver.acquire()
 			retorno = verifyRent(str(msg))
-			mutex_devolver.release()
 
 			conexao.send(retorno.encode())
    

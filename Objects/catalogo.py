@@ -50,9 +50,17 @@ def verifyDisp(title):
 def verifyRent(title):
     filme = getMovie(title)
     if filme:
-        if filme.estado == "Alugado":
-            returnMovie(filme)
-            return "Filme devolvido com sucesso."
+        try:
+            if filme.estado == "Alugado":
+                returnMovie(filme)
+                # 908 > filme devolvido com sucesso 
+                return "908"
+            else:
+                # 910 > falha ao devolver o filme
+                return "910"
+        except:
+            # 910 > falha ao devolver o filme
+            return "910"
         
 def get_ticket_str(title):
     movie = getMovie(title)
@@ -72,12 +80,6 @@ def get_ticket_str(title):
     print(formato_preco.format("Preço: R${}".format(preco)))
     print(formato_mensagem.format("Bom filme ㋡"))
     print(f' {linha_inferior}')
-
-#Testando o rent e returnMovies
-# verifyDisp("casablanca")
-# showCat()
-# verifyRent("casablanca")
-# showCat()
 
 
 

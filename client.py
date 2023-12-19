@@ -40,21 +40,25 @@ while True:
     if pagina == 1:
         showMenu()
     print(" ►", end=" ")
-    msg = input()
+    msg = input().lower()
 
     try:
-        if msg == "catalogo":
+        if msg == "catalogo" or msg == "catálogo":
             pagina = 2
             tcp.send(msg.encode())
             data_serialized = b""
             while True:
                 try:
                     packet = tcp.recv(4096)
+                    if packet.decode() == "909":
+                        print("Erro ao carregar o catálogo")
+                        time.sleep(2)
+                        pagina = 1
+                        break
                     data_serialized += packet
                 except socket.timeout:
                     break
             data_received = pickle.loads(data_serialized)
-            # print([movie.titulo for movie in data_received])
             print()
             print("     ========================== Filmes ===========================")
             for i in range(len(data_received)):
@@ -73,6 +77,7 @@ while True:
             tcp.send(msg.encode())
             retorno = tcp.recv(1024)
             retorno = retorno.decode()
+
             if retorno == "902":
                 get_ticket_str(msg)
             if retorno == "904":
@@ -90,7 +95,12 @@ while True:
             tcp.send(msg.encode())
             retorno = tcp.recv(1024)
             retorno = retorno.decode()
-            print(retorno)
+            if retorno == "908":
+                time.sleep(1)
+                print("\n  ⚠  Filme devolvido com sucesso \n")
+            if retorno == "910":
+                time.sleep(1)
+                print("\n  ⚠  Falha ao devolver o filme \n")
             pagina = 1
             
         elif msg == "historico":
