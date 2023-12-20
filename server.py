@@ -4,7 +4,7 @@ import threading
 from Objects.catalogo import showCat,verifyDisp,verifyRent
 from Objects.historico import get_all_hist, increment_hist
 from env import HOST, PORT
-from structures.Exceptions import CatalogException
+from structures.Exceptions import CatalogoException, AluguelException, DevolucaoException,FilmeException
 
 #Mutexes
 mutex_alugar = threading.Semaphore(1)
@@ -29,26 +29,29 @@ def comunicacao(mensagem, conexao, cliente):
 	msg = mensagem.decode()
 	try:
 		if msg == "catalogo" or msg == "catálogo":
-
-			#RC
 			try:
 				arr = showCat()
 				data_serialized = pickle.dumps(arr)
 				conexao.send(data_serialized)
 				arr.clear()
 			except:
-				# 909 > Erro ao carregar o catálogo
-				mensagem = '909'
+				mensagem = '909' 	# 909 > Erro ao carregar o catálogo
 				conexao.send(mensagem.encode())
 
-		if msg == "alugar":
-
+		if msg == "alugar":  
 			msg = conexao.recv(1024)
 			msg = msg.decode()
 
-			#RC
 			mutex_alugar.acquire()
-			retorno = verifyDisp(str(msg))
+
+			try:
+				verifyDisp(str(msg))
+				retorno = '902' 	# 902 > SUCESSO AO ALUGAR
+			except AluguelException:
+				retorno = '904' 	# 904 > NÃO FOI POSSIVEL ALUGAR
+			except FilmeException:
+				retorno = '906' 	# 906 > FILME NÃO ENCONTRADO
+			
 			mutex_alugar.release()
 			
 			if retorno == '902':
@@ -58,12 +61,14 @@ def comunicacao(mensagem, conexao, cliente):
 		if msg == "devolver":
 			msg = conexao.recv(1024)
 			msg = msg.decode()
+			try:
+				if verifyRent(str(msg)):
+					retorno = '908' 	#908 > FILME DEVOLVIDO COM SUCESSO
+					conexao.send(retorno.encode())
+			except DevolucaoException:
+				mensagem = '910'		#910 > NÃO FOI POSSIVEL DEVOLVER O FILME
+				conexao.send(mensagem.encode())
 
-			#RC
-			retorno = verifyRent(str(msg))
-
-			conexao.send(retorno.encode())
-   
 		if msg == "historico":
 			hist = get_all_hist(cliente)
 			data_serialized = pickle.dumps(hist)

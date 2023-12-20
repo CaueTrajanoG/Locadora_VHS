@@ -5,7 +5,7 @@ from env import HOST, PORT
 from Objects.historico import print_hist
 from Objects.catalogo import get_ticket_str
 
-# abre um socket UDP
+# abre um socket TCP
 tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 tcp.settimeout(1)
 dest = (HOST, PORT)
@@ -46,7 +46,7 @@ CODE_MESSAGES = {
     "904": "Este filme não está disponível para locação",
     "906": "Filme não encontrado... tente novamente",
     "908": "Filme devolvido com sucesso",
-    "910": "Falha ao devolver o filme",
+    "910": "Não foi possivel devolver o filme",
     "911": "O filme não existente no catálogo",
     "912": "O filme escolhido não está alugado para ser devolvido"
 }
