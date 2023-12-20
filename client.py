@@ -25,6 +25,11 @@ while not connected:
 
 def showMenu():
     print('''
+          +____________________+
+          ||------------------||
+          ||** LOCADORA VHS **||
+          ||__________________||
+
 Opções:
           +___________________+
           ||                 ||
@@ -35,6 +40,20 @@ Opções:
     ►     || Sair            ||
           ||_________________|| 
 ''')
+
+CODE_MESSAGES = {
+    "902": "Filme alugado com sucesso!",
+    "904": "Este filme não está disponível para locação",
+    "906": "Filme não encontrado... tente novamente",
+    "908": "Filme devolvido com sucesso",
+    "910": "Falha ao devolver o filme",
+    "911": "O filme não existente no catálogo",
+    "912": "O filme escolhido não está alugado para ser devolvido"
+}
+
+def print_return_msg(msg):
+    print(f"\n  ⚠  {msg}\n")
+    time.sleep(1)
 
 while True:
     if pagina == 1:
@@ -50,11 +69,6 @@ while True:
             while True:
                 try:
                     packet = tcp.recv(4096)
-                    if packet.decode() == "909":
-                        print("Erro ao carregar o catálogo")
-                        time.sleep(2)
-                        pagina = 1
-                        break
                     data_serialized += packet
                 except socket.timeout:
                     break
@@ -77,17 +91,11 @@ while True:
             tcp.send(msg.encode())
             retorno = tcp.recv(1024)
             retorno = retorno.decode()
-
+            print_return_msg(CODE_MESSAGES[retorno])
             if retorno == "902":
                 get_ticket_str(msg)
-            if retorno == "904":
-                time.sleep(1)
-                print("\n ⚠ ⚠ ⚠ Este filme não está disponível para locação ⚠ ⚠ ⚠ \n")
-            if retorno == "906":
-                time.sleep(1)
-                print("\n  ⚠  Filme não encontrado... tente novamente \n")
-
             pagina = 1
+            
         elif msg =="devolver":
             tcp.send(msg.encode())
             fita = input("Fita: ")
@@ -95,12 +103,7 @@ while True:
             tcp.send(msg.encode())
             retorno = tcp.recv(1024)
             retorno = retorno.decode()
-            if retorno == "908":
-                time.sleep(1)
-                print("\n  ⚠  Filme devolvido com sucesso \n")
-            if retorno == "910":
-                time.sleep(1)
-                print("\n  ⚠  Falha ao devolver o filme \n")
+            print_return_msg(CODE_MESSAGES[retorno])
             pagina = 1
             
         elif msg == "historico":
@@ -118,13 +121,15 @@ while True:
         
         elif msg == "s" or msg == "sair":
             break
+        
+        elif msg == "voltar":
+            pagina = 1
             
         else:
-            print('\n Opção inválida... tente novamente.')
-            time.sleep(2)
+            print_return_msg('Opção inválida... tente novamente.')
             pagina = 1
 
     except Exception as e:
         print('Erro:', e)
-        print("Conexão encerrada")
+        showMenu()
 tcp.close()

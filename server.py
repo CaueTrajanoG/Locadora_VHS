@@ -69,11 +69,8 @@ def comunicacao(mensagem, conexao, cliente):
 			data_serialized = pickle.dumps(hist)
 			conexao.send(data_serialized)
 
-
 	except Exception as e:
 		print('Erro:', e)
-		print('Mensagem invalida')
-
 
 
 while True:    

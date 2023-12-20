@@ -56,30 +56,32 @@ def verifyRent(title):
                 # 908 > filme devolvido com sucesso 
                 return "908"
             else:
-                # 910 > falha ao devolver o filme
-                return "910"
+                # 912 > filme não está alugado
+                return "912"
         except:
             # 910 > falha ao devolver o filme
             return "910"
+    # 911 > filme não encontrado
+    return "911"
         
 def get_ticket_str(title):
     movie = getMovie(title)
     titulo = movie.titulo
     preco = str(movie.preco).replace('.', ',')
     
-    linha_superior = "+----------------------------------+"
+    linha_superior = "       +----------------------------------+"
     linha_inferior = "_ " * (len(linha_superior)//2)
     
-    formato_filme = "|{: ^34}|"
-    formato_preco = "|{: ^34}|"
-    formato_mensagem = "|{: ^33}|"
+    formato_filme = "       |{: ^34}|"
+    formato_preco = "       |{: ^34}|"
+    formato_mensagem = "       |{: ^33}|"
     
     print(linha_superior)
     print(formato_filme.format("Comprovante"))
     print(formato_filme.format("Filme: {}".format(titulo)))
     print(formato_preco.format("Preço: R${}".format(preco)))
     print(formato_mensagem.format("Bom filme ㋡"))
-    print(f' {linha_inferior}')
+    print(f'    {linha_inferior}')
 
 
 
