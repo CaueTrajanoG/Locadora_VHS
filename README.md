@@ -52,11 +52,13 @@ Utilizamos o protocolo TCP para a comunicação cliente/servidor
 
 ## Protocolo de Aplicação
 
-...Sendo desenvolvido
-902 > sucesso ao alugar um filme
-904 > Não foi possivel alugar este filme
-906 > filme não encontrado
-909 > Erro ao exibir catalogo
+"902" > "Filme alugado com sucesso!",
+"904" > "Este filme não está disponível para locação",
+"906" > "Filme não encontrado... tente novamente",
+"908" > "Filme devolvido com sucesso",
+"909" > "Erro ao carregar o catálogo",
+"910" > "Não foi possivel devolver o filme",
+
 
 ## Detalhes sobre região crítica
 
