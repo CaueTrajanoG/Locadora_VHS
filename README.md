@@ -57,7 +57,7 @@ Utilizamos o protocolo TCP para a comunicação cliente/servidor
 "906" > "Filme não encontrado... tente novamente",
 "908" > "Filme devolvido com sucesso",
 "909" > "Erro ao carregar o catálogo",
-"910" > "Não foi possivel devolver o filme",
+"910" > "Não foi possivel devolver o filme"
 
 
 ## Detalhes sobre região crítica
