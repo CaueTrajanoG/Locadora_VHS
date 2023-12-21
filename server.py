@@ -70,6 +70,7 @@ def comunicacao(mensagem, conexao, cliente):
 				conexao.send(mensagem.encode())
 
 		if msg == "historico":
+			# buscamos o histórico do cliente e enviamos ao client
 			hist = get_all_hist(cliente)
 			data_serialized = pickle.dumps(hist)
 			conexao.send(data_serialized)

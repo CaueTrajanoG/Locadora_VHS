@@ -25,6 +25,10 @@ def showCat():
     return arr    
 
 def getMovie(title):
+    '''
+    Função responsável por buscar um filme na árvore e retornar 
+    o resultado da busca
+    '''
     return arv.search(Filme(title,0,''))
 
 def rentMovie(filme):
@@ -59,6 +63,9 @@ def verifyRent(title):
         raise DevolucaoException("Erro no sistema")
         
 def get_ticket_str(title):
+    '''
+    Função responsável por imprimir o ticket de locação do filme
+    '''
     movie = getMovie(title)
     titulo = movie.titulo
     preco = str(movie.preco).replace('.', ',')

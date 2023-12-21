@@ -52,12 +52,12 @@ Utilizamos o protocolo TCP para a comunicação cliente/servidor
 
 ## Protocolo de Aplicação
 
-"902" > "Filme alugado com sucesso!",
-"904" > "Este filme não está disponível para locação",
-"906" > "Filme não encontrado... tente novamente",
-"908" > "Filme devolvido com sucesso",
-"909" > "Erro ao carregar o catálogo",
-"910" > "Não foi possivel devolver o filme"
+- "902" > "Filme alugado com sucesso!"
+- "904" > "Este filme não está disponível para locação"
+- "906" > "Filme não encontrado... tente novamente"
+- "908" > "Filme devolvido com sucesso"
+- "909" > "Erro ao carregar o catálogo"
+- "910" > "Não foi possível devolver o filme"
 
 
 ## Detalhes sobre região crítica

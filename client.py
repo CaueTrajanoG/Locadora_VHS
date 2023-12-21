@@ -41,6 +41,7 @@ Opções:
           ||_________________|| 
 ''')
 
+# Dicionário para facilitar o print dos códigos de retorno
 CODE_MESSAGES = {
     "902": "Filme alugado com sucesso!",
     "904": "Este filme não está disponível para locação",
@@ -50,6 +51,7 @@ CODE_MESSAGES = {
     "910": "Não foi possivel devolver o filme",
 }
 
+# Função responsável por imprimir na tela as mensagens de erro
 def print_return_msg(msg):
     print(f"\n  ⚠  {msg}\n")
     time.sleep(1)
@@ -70,6 +72,8 @@ while True:
                     packet = tcp.recv(4096)
                     data_serialized += packet
                 except socket.timeout:
+                    # timeout acontece quando o client não recebe
+                    # mais packets do servidor
                     break
             data_received = pickle.loads(data_serialized)
             print()
@@ -106,6 +110,7 @@ while True:
             pagina = 1
             
         elif msg == "historico":
+            # solicitamos ao server o histórico do client
             tcp.send(msg.encode())
             hist_data = b""
             while True:
@@ -113,8 +118,12 @@ while True:
                     packet = tcp.recv(4096)
                     hist_data += packet
                 except socket.timeout:
+                    # timeout acontece quando o client não recebe
+                    # mais packets do servidor
                     break
+                
             data_received = pickle.loads(hist_data)
+            # recebido o retorno do server, imprimimos na tela o histórico
             print_hist(data_received)
             pagina = 1
         
